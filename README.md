@@ -147,7 +147,7 @@ All three scripts install the same custom [Starship](https://starship.rs) prompt
 
 ```
  main [!] 💠 default ☁️  aws-lab (us-east-1) took 9s
-ubuntu 24.04 xubuntu:~/repos/aws-lab-infra/environments/dev ❯
+ubuntu 24.04 xubuntu:~/repos/foundry-platform-demo/environments/dev ❯
 ```
 
 - **Line 1 (context):** Git branch + dirty status, Terraform workspace, AWS profile + region, k8s context, Docker context, command duration — only appears when relevant

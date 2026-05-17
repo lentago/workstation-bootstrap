@@ -2,6 +2,8 @@
 
 Single-command scripts that turn a fresh Linux environment into a fully configured cloud infrastructure development workstation. Three variants, same tools, same prompt, same workflow.
 
+**Authorship:** The bash scripts, Starship config, and documentation in this repo are co-written with [Claude](https://claude.ai) (Anthropic). I direct the work and review the output; Claude writes the code. I'm an infrastructure operator, not a software engineer — please don't read this repo as a portfolio of coding ability.
+
 ```
 workstation-bootstrap/
 ├── setup-crostini-lab.sh          # Chromebook Crostini (Debian container)
@@ -263,7 +265,7 @@ The workstation config file at `~/.config/workstation-bootstrap/config` is never
 
 ## Credits
 
-Built iteratively with [Claude](https://claude.ai) (Anthropic) through multi-day pair-programming sessions that included real-time field testing on actual Chromebook and Proxmox hardware. Seven bug fixes in the Crostini version, three layers of XRDP debugging in the Xubuntu version, and SELinux/KDE/Wayland adaptation for the Fedora version — each discovered on real hardware, each baked into the scripts so nobody else has to debug them.
+See the Authorship note at the top — the scripts in this repo are co-written with [Claude](https://claude.ai) (Anthropic). Development was multi-day pair-programming with real-time field testing on actual Chromebook and Proxmox hardware. Seven bug fixes in the Crostini version, three layers of XRDP debugging in the Xubuntu version, and SELinux/KDE/Wayland adaptation for the Fedora version — each discovered on real hardware, each baked into the scripts so nobody else has to debug them.
 
 ## License
 

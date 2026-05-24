@@ -1031,13 +1031,15 @@ cat > "$HOME/.config/starship.toml" << 'STARSHIP_CONF'
 # ============================================================================
 
 scan_timeout = 100
+add_newline = false
 
 # The format string controls what shows up and in what order.
-# Context modules render on line 1 (only when active), then $line_break,
-# then hostname:path + cursor on line 2. When no context is active, starship
-# collapses the empty first line automatically.
+# Context modules render on line 1 (only when active), then a newline,
+# then hostname:path + cursor on line 2. The parens around the context
+# modules collapse the entire group (and its trailing newline) when no
+# variable inside it has a value, so an idle prompt is a single line.
 format = """
-$git_branch\
+($git_branch\
 $git_status\
 $python\
 $nodejs\
@@ -1045,9 +1047,8 @@ $golang\
 $terraform\
 $aws\
 $kubernetes\
-$cmd_duration\
-$line_break\
-${custom.os}$hostname$directory\
+$cmd_duration
+)${custom.os}$hostname$directory\
 $character"""
 
 # --- Prompt character -------------------------------------------------------

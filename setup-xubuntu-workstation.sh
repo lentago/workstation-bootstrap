@@ -1013,9 +1013,10 @@ cat > "$HOME/.config/starship.toml" << 'STARSHIP_CONF'
 # ============================================================================
 
 scan_timeout = 100
+add_newline = false
 
 format = """
-$git_branch\
+($git_branch\
 $git_status\
 $python\
 $nodejs\
@@ -1024,9 +1025,8 @@ $terraform\
 $aws\
 $kubernetes\
 $docker_context\
-$cmd_duration\
-$line_break\
-${custom.os}$hostname$directory\
+$cmd_duration
+)${custom.os}$hostname$directory\
 $character"""
 
 [character]

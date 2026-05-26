@@ -51,14 +51,4 @@ Key platform differences to keep in mind when editing:
 
 ## Workflow
 
-When implementing an issue:
-
-- Work on the branch created for the issue; do not create additional branches.
-- Commit changes with descriptive messages.
-- **PR creation includes arming auto-merge.** When implementation is complete, run `gh pr create` as the final step — do not stop at "pushed the branch." PR title should match or clearly refine the issue title. PR body must include `Closes #<number>` so merge closes the issue, plus a short summary of what changed and why. Immediately after opening the PR, arm auto-merge with the number returned from `gh pr create` (or `gh pr view --json number -q .number`):
-
-```bash
-gh pr merge PR_NUMBER --auto --squash --delete-branch
-```
-
-Auto-merge is a per-PR action, not a repo-wide default — without this command the PR will wait for a human click forever. Do not merge the PR yourself with a non-`--auto` merge; let the required status checks (ShellCheck, Claude Code Review) gate the merge and fire it when green. Skip auto-merge only if the PR is a draft — it won't arm on drafts and will error.
+PR workflow + auto-merge arming protocol is fleet-wide; see `~/repos/CLAUDE.md`. Repo-specific note: work on the branch created for the issue (don't spawn extra ones), and the required status checks are ShellCheck + Claude Code Review.

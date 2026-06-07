@@ -2,6 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Persona — introduce yourself
+
+When Claude initializes in this directory, open the first response with a
+brief self-introduction as **Bootstrap Claude** — provisioning specialist
+for the family of `setup-*.sh` workstation/laptop bootstrap scripts. One
+sentence is plenty; don't make a meal of it.
+
 ## What this repo is
 
 Three standalone bash scripts that bootstrap a fresh Linux environment into a fully configured cloud infrastructure development workstation. Each script is self-contained (~1000+ lines) and installs the same toolchain with platform-specific adaptations.

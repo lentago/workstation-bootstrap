@@ -1164,6 +1164,16 @@ else
   warn "workstation-bootstrap not found at $WB_REPO — skipping script installation"
 fi
 
+# --- Claude Code cost export (local-session cost → homelab Grafana) ---------
+# Idempotent installer for the systemd --user timer + SessionEnd hook that ship
+# finished interactive-session cost to the "Claude Runner Fleet" dashboard.
+# node + jq + the cloned repo are all present by now. Non-fatal on any failure.
+# (Crostini's systemd --user may be unavailable — the installer degrades safely.)
+if [[ -x "$WB_REPO/claude-cost-export/install.sh" ]]; then
+  section "Claude Code cost export"
+  "$WB_REPO/claude-cost-export/install.sh" || warn "cost-export install failed (non-fatal — re-run later)"
+fi
+
 # ============================================================================
 section "🎉 Setup Complete!"
 echo ""

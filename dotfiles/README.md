@@ -61,11 +61,14 @@ That preserves in-place swapping — e.g. alacritty's
 clobber a symlink. The cost is that local edits don't flow back automatically;
 that's what `capture.sh` is for.
 
-## Not yet wired into `setup-*.sh`
+## Deployed by `setup-*.sh`
 
-The provisioning scripts don't call `install.sh` yet — for now it's a manual
-post-provision step. Wiring it in (across all four scripts, per the repo's
-keep-in-sync rule) is a sensible follow-up.
+All four provisioning scripts run `install.sh` automatically, as a non-fatal
+post-step right after they clone your repos (so the checkout that holds
+`install.sh` is already present). A fresh machine restores these configs with
+no manual step. The block is `-x`-guarded, so an older clone without
+`dotfiles/install.sh` simply skips it. Running `install.sh` by hand still
+works any time you want to re-deploy.
 
 ## What's tracked today
 

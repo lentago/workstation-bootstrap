@@ -1319,6 +1319,15 @@ if [[ -x "$WB_REPO/claude-cost-export/install.sh" ]]; then
   "$WB_REPO/claude-cost-export/install.sh" || warn "cost-export install failed (non-fatal — re-run later)"
 fi
 
+# --- Captured local dotfiles (alacritty, etc.) -----------------------------
+# Deploy hand-tuned configs tracked in dotfiles/ onto this machine. Idempotent;
+# backs up any differing existing file to ~/.dotfiles-backup/ before overwrite.
+# The repo clone above provides install.sh; non-fatal if it's an older clone.
+if [[ -x "$WB_REPO/dotfiles/install.sh" ]]; then
+  section "Local config files (dotfiles)"
+  "$WB_REPO/dotfiles/install.sh" || warn "dotfiles install failed (non-fatal — re-run later)"
+fi
+
 # ============================================================================
 section "🎉 Setup Complete!"
 echo ""

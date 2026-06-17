@@ -1,0 +1,238 @@
+# ░▒▓█ alacritty: ember · warm low-glare █▓▒░
+# Warm amber/terracotta palette, Cascadia Code, dimmed foreground — built for
+# low eye-strain. This is the saved profile; it's also the current default
+# (mirrored into alacritty.toml). Swap back temporarily with:
+#   alacritty --config-file ~/.config/alacritty/alacritty-ember.toml
+# To make a DIFFERENT profile the default: cp that file over alacritty.toml.
+
+[general]
+live_config_reload = true
+# Always open new windows in $HOME, not the spawning window's cwd.
+working_directory = "/home/cpitzi"
+
+[env]
+TERM = "alacritty"
+COLORTERM = "truecolor"
+
+# ─── window ──────────────────────────────────────────────────────────────
+[window]
+opacity = 0.94
+blur = true
+decorations = "full"
+dynamic_title = true
+dynamic_padding = true
+startup_mode = "Windowed"
+title = "▓▒░ ember ░▒▓"
+
+[window.dimensions]
+columns = 140
+lines = 38
+
+[window.padding]
+x = 14
+y = 12
+
+# ─── scrolling ───────────────────────────────────────────────────────────
+[scrolling]
+history = 50000
+multiplier = 5
+
+# ─── font ────────────────────────────────────────────────────────────────
+# Sans-serif (Cascadia Code — crisp sans w/ cursive italics). At ~/.local/share/fonts.
+# Swap-in alternatives (already installed — just change the family below):
+#   • "Maple Mono NF"           — rounded humanist sans
+#   • "JetBrainsMono Nerd Font" — previous default, geometric sans
+# Falls back to system monospace if the family is missing.
+[font]
+size = 13.0
+builtin_box_drawing = true
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "CaskaydiaCove Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "CaskaydiaCove Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "CaskaydiaCove Nerd Font"
+style = "Bold Italic"
+
+[font.offset]
+x = 0
+y = 1
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+# ─── cursor ──────────────────────────────────────────────────────────────
+[cursor]
+unfocused_hollow = true
+thickness = 0.20
+
+[cursor.style]
+shape = "Beam"
+blinking = "Always"
+
+[cursor.vi_mode_style]
+shape = "Block"
+blinking = "Always"
+
+# ─── bell: soft violet pulse ─────────────────────────────────────────────
+[bell]
+animation = "EaseOutSine"
+duration = 90
+color = "#1b5d52"   # gentle breath above the purple bg
+
+# ─── mouse ───────────────────────────────────────────────────────────────
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+mouse = "Right"
+action = "PasteSelection"
+
+# ─── selection ───────────────────────────────────────────────────────────
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+# ─── colors: lumen · 16° ──────────────────────────────────────────
+[colors]
+# Softened for low glare: bold no longer jumps to the bright (neon) palette.
+draw_bold_text_with_bright_colors = false
+
+[colors.primary]
+background = "#1d120d"         # warmer still
+foreground = "#c8a878"        # amber-cream, still dimmed for low glare
+dim_foreground = "#8f7a5c"
+bright_foreground = "#ddc48f"
+
+[colors.cursor]
+text   = "#1d120d"
+cursor = "#d69b50"
+
+[colors.vi_mode_cursor]
+text   = "#1d120d"
+cursor = "#aeb35f"
+
+[colors.search.matches]
+foreground = "#1d120d"
+background = "#b88560"
+
+[colors.search.focused_match]
+foreground = "#1d120d"
+background = "#d69b50"
+
+[colors.footer_bar]
+foreground = "#c8a878"
+background = "#3a2519"
+
+[colors.hints.start]
+foreground = "#1d120d"
+background = "#b88560"
+
+[colors.hints.end]
+foreground = "#1d120d"
+background = "#93b187"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.selection]
+text       = "CellBackground"
+background = "#6e5347"
+
+# normal — warm, muted (amber / olive / terracotta), low glare
+[colors.normal]
+black   = "#473027"
+red     = "#d67152"
+green   = "#aeb35f"
+yellow  = "#e0ad55"
+blue    = "#9a9fae"
+magenta = "#d18793"
+cyan    = "#93b187"
+white   = "#c2b08f"
+
+# bright — gently lifted warm tones, no longer neon
+[colors.bright]
+black   = "#785d50"
+red     = "#e38863"
+green   = "#c0c479"
+yellow  = "#ebc473"
+blue    = "#b1b2bf"
+magenta = "#e0a3a9"
+cyan    = "#acc6a9"
+white   = "#ddc48f"
+
+[colors.dim]
+black   = "#130b08"
+red     = "#991a0c"
+green   = "#0c9943"
+yellow  = "#99870c"
+blue    = "#0c1999"
+magenta = "#980c99"
+cyan    = "#0c6199"
+white   = "#719991"
+
+# indexed accents for prompts / shell highlighting
+[[colors.indexed_colors]]
+index = 16
+color = "#e0ad55"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#93b187"
+
+# ─── hints: click URLs ───────────────────────────────────────────────────
+[[hints.enabled]]
+command         = "xdg-open"
+hyperlinks      = true
+post_processing = true
+persist         = false
+mouse           = { enabled = true, mods = "None" }
+binding         = { key = "U", mods = "Control|Shift" }
+regex = '(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^<>"\s{-}\^⟨⟩`]+'
+
+# ─── keybindings ─────────────────────────────────────────────────────────
+[keyboard]
+bindings = [
+  # font size: ctrl + / - / 0
+  { key = "Equals", mods = "Control",          action = "IncreaseFontSize" },
+  { key = "Plus",   mods = "Control",          action = "IncreaseFontSize" },
+  { key = "Minus",  mods = "Control",          action = "DecreaseFontSize" },
+  { key = "Key0",   mods = "Control",          action = "ResetFontSize"    },
+
+  # clipboard
+  { key = "C",      mods = "Control|Shift",    action = "Copy"             },
+  { key = "V",      mods = "Control|Shift",    action = "Paste"            },
+  { key = "Insert", mods = "Shift",            action = "PasteSelection"   },
+
+  # search
+  { key = "F",      mods = "Control|Shift",    action = "SearchForward"    },
+  { key = "B",      mods = "Control|Shift",    action = "SearchBackward"   },
+
+  # vi mode + scrollback nav
+  { key = "Space",  mods = "Control|Shift",    action = "ToggleViMode"     },
+  { key = "PageUp",                            action = "ScrollPageUp",   mode = "~Alt" },
+  { key = "PageDown",                          action = "ScrollPageDown", mode = "~Alt" },
+  { key = "Home",   mods = "Shift",            action = "ScrollToTop"      },
+  { key = "End",    mods = "Shift",            action = "ScrollToBottom"   },
+
+  # window toys
+  { key = "F11",                               action = "ToggleFullscreen" },
+  { key = "N",      mods = "Control|Shift",    action = "CreateNewWindow"  },
+  { key = "Return", mods = "Alt",              action = "ToggleFullscreen" },
+  { key = "Return", mods = "Shift",            chars  = "\n"         },
+
+  # clear scrollback + screen
+  { key = "K",      mods = "Control|Shift",    action = "ClearHistory"     },
+  { key = "L",      mods = "Control",          chars  = "\f"               },
+]

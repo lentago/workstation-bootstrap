@@ -1,0 +1,238 @@
+# ❄ ✦ alacritty: aurora borealis ✦ ❄
+# Deep arctic night with shimmering aurora highlights.
+# Sister config to alacritty.toml (synthwave). Swap with:
+#   alacritty --config-file ~/.config/alacritty/alacritty-aurora.toml
+# or `mv` it over the default to make it permanent.
+
+[general]
+live_config_reload = true
+# Always open new windows in $HOME, not the spawning window's cwd.
+working_directory = "/home/cpitzi"
+
+[env]
+TERM = "alacritty"
+COLORTERM = "truecolor"
+
+# ─── window ──────────────────────────────────────────────────────────────
+[window]
+opacity = 0.93
+blur = true
+decorations = "full"
+dynamic_title = true
+dynamic_padding = false
+startup_mode = "Maximized"
+title = "✦ aurora ✦"
+
+[window.padding]
+x = 20
+y = 16
+
+[window.class]
+instance = "Alacritty"
+general  = "AlacrittyAurora"
+
+# ─── scrolling ───────────────────────────────────────────────────────────
+[scrolling]
+history = 100000
+multiplier = 4
+
+# ─── font ────────────────────────────────────────────────────────────────
+[font]
+size = 13.0
+builtin_box_drawing = true
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style  = "Light"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style  = "SemiBold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style  = "Light Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style  = "SemiBold Italic"
+
+[font.offset]
+x = 0
+y = 2
+
+# ─── cursor ──────────────────────────────────────────────────────────────
+[cursor]
+unfocused_hollow = true
+thickness = 0.25
+
+[cursor.style]
+shape    = "Underline"
+blinking = "On"
+
+[cursor.vi_mode_style]
+shape    = "Block"
+blinking = "Off"
+
+# ─── bell: soft twilight pulse ───────────────────────────────────────────
+[bell]
+animation = "EaseOutSine"
+duration  = 90
+color     = "#1a2050"   # just a breath above the bg — visible but gentle
+
+# ─── mouse / selection ───────────────────────────────────────────────────
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+mouse  = "Middle"
+action = "PasteSelection"
+
+[selection]
+save_to_clipboard      = true
+semantic_escape_chars  = ",│`|:\"' ()[]{}<>\t"
+
+# ─── colors: aurora borealis ─────────────────────────────────────────────
+[colors]
+draw_bold_text_with_bright_colors = true
+transparent_background_colors     = true
+
+[colors.primary]
+background        = "#050817"   # void / night sky
+foreground        = "#dbe9ff"   # moonlight on snow
+dim_foreground    = "#7a8aab"
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+text   = "#050817"
+cursor = "#7df9ff"   # glacier cyan
+
+[colors.vi_mode_cursor]
+text   = "#050817"
+cursor = "#00ff9c"   # aurora green
+
+[colors.search.matches]
+foreground = "#050817"
+background = "#fff394"   # starlight
+
+[colors.search.focused_match]
+foreground = "#050817"
+background = "#00ff9c"
+
+[colors.footer_bar]
+foreground = "#dbe9ff"
+background = "#11183a"
+
+[colors.hints.start]
+foreground = "#050817"
+background = "#fff394"
+
+[colors.hints.end]
+foreground = "#050817"
+background = "#7df9ff"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.selection]
+text       = "#050817"
+background = "#9b6dff"   # twilight purple
+
+# normal: aurora palette
+[colors.normal]
+black   = "#0a0e27"
+red     = "#ff5c8a"   # rose dawn
+green   = "#00ff9c"   # aurora green
+yellow  = "#fff394"   # starlight
+blue    = "#5e9eff"   # ice blue
+magenta = "#c779ff"   # twilight purple
+cyan    = "#7df9ff"   # glacier
+white   = "#dbe9ff"   # moonlight
+
+# bright: cranked-up aurora intensity
+[colors.bright]
+black   = "#1a2050"
+red     = "#ff85a8"
+green   = "#7affc8"
+yellow  = "#fff9c2"
+blue    = "#8fc2ff"
+magenta = "#dba6ff"
+cyan    = "#b2fbff"
+white   = "#ffffff"
+
+[colors.dim]
+black   = "#02040d"
+red     = "#a83a5c"
+green   = "#00a868"
+yellow  = "#a8975f"
+blue    = "#3e6aa8"
+magenta = "#824da8"
+cyan    = "#52a3a8"
+white   = "#8a96b3"
+
+# indexed accents for prompt themes / starship modules
+[[colors.indexed_colors]]
+index = 16
+color = "#ff9e64"   # ember (warning)
+
+[[colors.indexed_colors]]
+index = 17
+color = "#00d4aa"   # mint (success)
+
+# ─── hints: click URLs ───────────────────────────────────────────────────
+[[hints.enabled]]
+command         = "xdg-open"
+hyperlinks      = true
+post_processing = true
+persist         = false
+mouse           = { enabled = true, mods = "None" }
+binding         = { key = "U", mods = "Control|Shift" }
+regex           = '(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^<>"\s{-}\^⟨⟩`]+'
+
+# Hint: copy a hex color you see in the buffer
+[[hints.enabled]]
+command   = { program = "sh", args = ["-c", "printf '%s' \"$1\" | xclip -selection clipboard", "_"] }
+hyperlinks = false
+persist    = false
+mouse      = { enabled = false }
+binding    = { key = "H", mods = "Control|Shift" }
+regex      = '#(?:[0-9a-fA-F]{3}){1,2}\b'
+
+# ─── keybindings ─────────────────────────────────────────────────────────
+[keyboard]
+bindings = [
+  # font size
+  { key = "Equals", mods = "Control",          action = "IncreaseFontSize"  },
+  { key = "Plus",   mods = "Control",          action = "IncreaseFontSize"  },
+  { key = "Minus",  mods = "Control",          action = "DecreaseFontSize"  },
+  { key = "Key0",   mods = "Control",          action = "ResetFontSize"     },
+
+  # clipboard
+  { key = "C",      mods = "Control|Shift",    action = "Copy"              },
+  { key = "V",      mods = "Control|Shift",    action = "Paste"             },
+  { key = "Insert", mods = "Shift",            action = "PasteSelection"    },
+
+  # search
+  { key = "F",      mods = "Control|Shift",    action = "SearchForward"     },
+  { key = "B",      mods = "Control|Shift",    action = "SearchBackward"    },
+
+  # vi mode + scrollback
+  { key = "Space",  mods = "Control|Shift",    action = "ToggleViMode"      },
+  { key = "PageUp",                            action = "ScrollPageUp",   mode = "~Alt" },
+  { key = "PageDown",                          action = "ScrollPageDown", mode = "~Alt" },
+  { key = "Home",   mods = "Shift",            action = "ScrollToTop"       },
+  { key = "End",    mods = "Shift",            action = "ScrollToBottom"    },
+  { key = "K",      mods = "Control|Shift",    action = "ClearHistory"      },
+  { key = "L",      mods = "Control",          chars  = "\f"                },
+
+  # window
+  { key = "F11",                               action = "ToggleFullscreen"  },
+  { key = "Return", mods = "Alt",              action = "ToggleFullscreen"  },
+  { key = "N",      mods = "Control|Shift",    action = "CreateNewWindow"   },
+
+  # opacity (dim toward void) — nice for ambient mode
+  # opacity (dim toward void) — nice for ambient mode
+  { key = "BracketLeft",  mods = "Control|Shift", action = "DecreaseOpacity" },
+  { key = "BracketRight", mods = "Control|Shift", action = "IncreaseOpacity" },
+]

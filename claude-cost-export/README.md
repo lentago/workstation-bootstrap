@@ -5,6 +5,12 @@ Grafana **"Claude Runner Fleet"** dashboard, so a workstation shows up next to
 the [bullpen](https://github.com/PitziLabs/bullpen) agents under a **Local
 sessions** row (`source="local"`, `worker=<hostname>`).
 
+It also emits a lightweight **`session_running`** heartbeat while a session is
+actively working (throttled to ~30s, keyed on **active tool use**), so the
+dashboard's **"Local sessions underway"** pane shows in real time which
+workstations are busy — the live counterpart to the per-session cost shipped at
+the end.
+
 The bullpen gets `total_cost_usd` for free from headless `claude -p --output-format
 json`. Interactive sessions have no such result blob, so this tool reconstructs
 per-session cost from the transcript and ships one event per finished session.
@@ -42,8 +48,9 @@ serialized with `flock` so a timer tick can't race a manual run.
 | `cost-export.mjs` | sweep transcripts → spool, and drain spool → Loki. Phases: `sweep`, `ship`, `seed`, `all` (default). |
 | `pricing.json` | per-MTok USD price table + cache multipliers. **Drifts — keep current** (source: platform.claude.com/docs/en/about-claude/pricing). |
 | `cost-hook.sh` | `SessionEnd` hook: drops a `done/<session_id>` marker so finished sessions ship promptly. |
+| `session-heartbeat.sh` | `PostToolUse` + `UserPromptSubmit` hook: throttled (~30s) `session_running` beat on active tool use → the "Local sessions underway" pane. Fire-and-forget; off-LAN no-ops. |
 | `claude-cost-export.{service,timer}` | systemd `--user` units; the timer runs `sweep + ship` every 5 min (backstop + off-LAN drainer). |
-| `install.sh` | idempotent install: copy assets → render units → merge hook → **seed** → start timer. |
+| `install.sh` | idempotent install: copy assets → render units → merge hooks → **seed** → start timer. |
 
 ## Install
 
@@ -60,6 +67,22 @@ COST_LOOKBACK_DAYS=90 flock -n ~/.claude/cost-export/.lock \
   node ~/.claude/cost-export/cost-export.mjs sweep
 ```
 
+## Live "underway" signal
+
+The `session_running` heartbeat is **separate from cost shipping**.
+`session-heartbeat.sh` fires on every `PostToolUse` (and `UserPromptSubmit`),
+throttles to one push per session per `COST_HEARTBEAT_SEC` (default 30s), and
+fire-and-forgets a tiny `session_running` event straight to the Loki receiver. It
+is **never spooled** (a stale "running" shipped later would be misleading) and
+off-LAN it just times out and vanishes — so it adds no latency and needs no state.
+
+**The metric is active tool use, not session liveness.** A session that's open
+but idle (you're reading, or away) emits no beats, so its band drops out — the
+pane answers "which workstations are *working* right now", not "which sessions
+are merely open". A continuously-busy session draws a solid band; long pauses show
+as gaps. The dashboard query (`count_over_time(... session_running [2m]) > bool 0`,
+stacked by `worker`) bridges beats within a 2-minute window.
+
 ## Cost basis
 
 Cost is **computed** (CC doesn't write dollars to the transcript) as
@@ -73,7 +96,8 @@ same API-list-price basis the fleet reports — an estimate, not a billed amount
 
 `COST_STATE_DIR` · `COST_PROJECTS_DIR` · `COST_PRICING` · `COST_LOKI_URL`
 (default `http://192.168.139.20:3100/loki/api/v1/push`) · `COST_IDLE_MIN` (30) ·
-`COST_LOOKBACK_DAYS` (14) · `COST_WORKER` (hostname) · `COST_REJECT_OLD_H` (160).
+`COST_LOOKBACK_DAYS` (14) · `COST_WORKER` (hostname) · `COST_REJECT_OLD_H` (160) ·
+`COST_HEARTBEAT_SEC` (30, heartbeat throttle).
 
 ## Known limits
 

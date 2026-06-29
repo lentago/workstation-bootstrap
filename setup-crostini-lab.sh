@@ -3,16 +3,16 @@
 # setup-crostini-lab.sh — v4.1 (field-tested on real Chromebook hardware)
 # Chromebook Crostini (Debian) bootstrap for ops/dev homelab work
 #
-# Author:  Chris Pitzi — PitziLabs (https://github.com/PitziLabs)
+# Author:  Chris Pitzi — Lentago Labs (https://github.com/lentago)
 # Updated: 2026-03-26
 #
 # Usage:
 #   Quick start (download first — recommended):
-#     curl -sLO https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-crostini-lab.sh
+#     curl -sLO https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-crostini-lab.sh
 #     GH_TOKEN=ghp_yourtoken bash setup-crostini-lab.sh
 #
 #   Or pipe directly (note: GH_TOKEN goes AFTER the pipe):
-#     curl -sL https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-crostini-lab.sh | GH_TOKEN=ghp_yourtoken bash
+#     curl -sL https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-crostini-lab.sh | GH_TOKEN=ghp_yourtoken bash
 #
 # Environment variables (all optional — auto-detected when possible):
 #   GH_TOKEN        GitHub personal access token (scopes: repo, read:org)

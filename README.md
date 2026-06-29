@@ -21,28 +21,28 @@ Pick the script that matches your environment and run it:
 **Chromebook (Crostini):**
 ```bash
 # Download first (recommended):
-curl -sLO https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-crostini-lab.sh
+curl -sLO https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-crostini-lab.sh
 GH_TOKEN=ghp_yourtoken bash setup-crostini-lab.sh
 
 # Or pipe directly (note: GH_TOKEN goes AFTER the pipe):
-curl -sL https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-crostini-lab.sh | GH_TOKEN=ghp_yourtoken bash
+curl -sL https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-crostini-lab.sh | GH_TOKEN=ghp_yourtoken bash
 ```
 
 **Xubuntu 24.04 VM:**
 ```bash
-curl -sLO https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-xubuntu-workstation.sh
+curl -sLO https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-xubuntu-workstation.sh
 GH_TOKEN=ghp_yourtoken bash setup-xubuntu-workstation.sh
 ```
 
 **Fedora KDE Plasma VM:**
 ```bash
-curl -sLO https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-fedora-workstation.sh
+curl -sLO https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-fedora-workstation.sh
 GH_TOKEN=ghp_yourtoken bash setup-fedora-workstation.sh
 ```
 
 **Ubuntu Desktop laptop (bare metal):**
 ```bash
-curl -sLO https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-ubuntu-laptop.sh
+curl -sLO https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-ubuntu-laptop.sh
 GH_TOKEN=ghp_yourtoken bash setup-ubuntu-laptop.sh
 ```
 

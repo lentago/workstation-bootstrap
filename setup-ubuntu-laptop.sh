@@ -3,7 +3,7 @@
 # setup-ubuntu-laptop.sh — v1 (adapted from setup-xubuntu-workstation.sh)
 # Ubuntu Desktop LTS on bare-metal laptop — DevOps workstation bootstrap
 #
-# Author:  Chris Pitzi — PitziLabs (https://github.com/PitziLabs)
+# Author:  Chris Pitzi — Lentago Labs (https://github.com/lentago)
 # Updated: 2026-04-28
 #
 # Lineage: Forked from setup-xubuntu-workstation.sh v1, which was forked from
@@ -22,11 +22,11 @@
 #
 # Usage:
 #   Quick start (download first — recommended):
-#     curl -sLO https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-ubuntu-laptop.sh
+#     curl -sLO https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-ubuntu-laptop.sh
 #     GH_TOKEN=ghp_yourtoken bash setup-ubuntu-laptop.sh
 #
 #   Or pipe directly (note: GH_TOKEN goes AFTER the pipe):
-#     curl -sL https://raw.githubusercontent.com/PitziLabs/workstation-bootstrap/main/setup-ubuntu-laptop.sh | GH_TOKEN=ghp_yourtoken bash
+#     curl -sL https://raw.githubusercontent.com/lentago/workstation-bootstrap/main/setup-ubuntu-laptop.sh | GH_TOKEN=ghp_yourtoken bash
 #
 # Environment variables (all optional — auto-detected when possible):
 #   GH_TOKEN        GitHub personal access token (scopes: repo, read:org)

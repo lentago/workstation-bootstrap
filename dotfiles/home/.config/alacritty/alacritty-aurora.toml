@@ -6,8 +6,6 @@
 
 [general]
 live_config_reload = true
-# Always open new windows in $HOME, not the spawning window's cwd.
-working_directory = "/home/cpitzi"
 
 [env]
 TERM = "alacritty"
